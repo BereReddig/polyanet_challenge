@@ -1,7 +1,5 @@
 import axios from "axios";
-
-const candidateId = "364c0b14-5028-4e1d-9230-55e8a7a32029";
-const endpoint = "https://challenge.crossmint.io/api";
+import { candidateId, endpoint } from "../config";
 
 const crossPositions = [
   [2, 2],
@@ -23,21 +21,25 @@ const generatePolyanetCross = () => {
   for (let position of crossPositions) {
     console.log(position);
     const [row, column] = position;
-    createPosition(row, column);
+    createPolyanetPosition(row, column);
   }
 };
 
-const createPosition = async (row, column) => {
+const createPolyanetPosition = async (row: number, column: number) => {
   const body = {
     row,
     column,
     candidateId,
-  }
+  };
   try {
-    await axios.post(`${endpoint}/polyanets`, body);
+    axios.post(`${endpoint}/polyanets`, body, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
   } catch (error) {
-    console.log('createPosition error: ', error);
+    console.log("createPolyanetPosition error: ", error);
   }
-}
+};
 
-export { generatePolyanetCross };
+export { generatePolyanetCross, createPolyanetPosition };

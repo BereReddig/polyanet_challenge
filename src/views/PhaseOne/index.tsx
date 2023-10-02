@@ -1,4 +1,5 @@
-import { generatePolyanetCross } from '../../api/index';
+import React from "react";
+import { generatePolyanetCross } from '../../api/PolyanetCross/index';
 
 const PhaseOne = () => {
   generatePolyanetCross();
